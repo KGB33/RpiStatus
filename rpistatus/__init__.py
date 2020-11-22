@@ -12,7 +12,7 @@ def create_app(config=os.environ["APP_CONFIG"]):
     app.config.from_object(config)
 
     # ----- Register Blueprints -----
-    from notes.main import bp as main_bp
+    from rpistatus.main import bp as main_bp
 
     app.register_blueprint(main_bp, url_prefix="")
 

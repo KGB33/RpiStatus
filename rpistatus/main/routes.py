@@ -1,4 +1,4 @@
-from notes.main import bp
+from rpistatus.main import bp
 
 
 @bp.route("/")
