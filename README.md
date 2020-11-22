@@ -1,7 +1,7 @@
 
 # Goals
 
-- [ ] General OK endpoint
+- [x] General OK endpoint
 
 - [ ] Access Docker damon and view container status via `docker-py`
   - [ ] Currently Running containers `docker ps`
@@ -14,5 +14,5 @@
   - [ ] Currently Running Processes
 
 - [ ] Network info
-  - [ ] Hostname
+  - [x] Hostname
   - [ ] Internal Ip addr
