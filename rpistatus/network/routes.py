@@ -24,13 +24,11 @@ def hostname():
 def ip():
     """
     Returns the ip addresses of the device.
-
-    Using `ip -j addr` returns a Json verson of response
     """
-    ips = _get_ip_info(flags=("-j", "-brief",))
-    return {"interfaces": ips}
+    return socket.gethostbyname(socket.gethostname())
 
-def _get_ip_info(obj="addr", flags=("-j", )):
+
+def _get_ip_info(obj="addr", flags=("-j",)):
     """
     Calles `ip -j obj` and returns the parsed json response.
 
@@ -40,4 +38,3 @@ def _get_ip_info(obj="addr", flags=("-j", )):
     info.check_returncode()
 
     return json.loads(info.stdout)
-
