@@ -25,5 +25,15 @@ def cores():
 @bp.route("/df")
 def diskfree():
     """
-    returns free space on disk
+    Note: Use `df -B1` to get bytes.
+
+    Returns a Json list of `disk` objects, each disk object has
+        Filesystem:   string
+        Size:         int (bytes)
+        Used:         int (bytes)
+        Avalable:     int (bytes)
+        Capacity:     int (0 - 100)
+        MountedOn:    string
+
+    Each response will have at least one disk object
     """
