@@ -1,5 +1,3 @@
-from socket import gethostname
-
 from rpistatus.main import bp
 
 
@@ -9,6 +7,8 @@ def index():
     return "RaspberryPi is Connected and Running.", 200
 
 
-@bp.route("/hostname")
-def hostname():
-    return gethostname()
+@bp.route("/ps")
+def ps():
+    """
+    Returns currently running processes
+    """

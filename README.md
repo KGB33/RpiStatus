@@ -1,18 +1,21 @@
 
 # Goals
 
-- [x] General OK endpoint
+- [x] General OK endpoint                (`/`)
+  - [ ] Currently Running Processes      (`/ps`)
 
-- [ ] Access Docker damon and view container status via `docker-py`
-  - [ ] Currently Running containers `docker ps`
-  - [ ] Docker logs
+- [ ] Access general hardware info       (`/hardware`)
+  - [ ] CPU Temps                        (`/hardware/temps`)
+  - [ ] CPU Utization                    (`/hardware/cores`)
+  - [ ] Disk Free                        (`/hardware/df`)
 
-- [ ] Access general hardware info
-  - [ ] CPU Temps
-  - [ ] CPU Utization
-  - [ ] Disk Free
-  - [ ] Currently Running Processes
+- [ ] Network info                       (`/network`)
+  - [x] Hostname                         (`/network/hostname`)
+  - [ ] Internal Ip addr                 (`/network/ip`)
 
-- [ ] Network info
-  - [x] Hostname
-  - [ ] Internal Ip addr
+
+
+- [ ] General Docker Info                (`/docker`)
+  - [ ] Currently Running containers     (`/docker/ps`)
+  - [ ] Docker logs                      (`/docker/logs/<container>`)
+
