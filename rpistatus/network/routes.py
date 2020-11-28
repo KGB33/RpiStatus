@@ -13,7 +13,7 @@ def network():
       - hostname
       - ip
     """
-
+    return ip() | {"hostname": hostname()}
 
 @bp.route("/hostname")
 def hostname():
@@ -24,8 +24,19 @@ def hostname():
 def ip():
     """
     Returns the ip addresses of the device.
+
+    Parses `ip addr -j` to get the ip address of each NIC
     """
-    return socket.gethostbyname(socket.gethostname())
+    j = _get_ip_info()
+    ips = [
+        {
+            "name": nic["ifname"],
+            "type": nic["link_type"],
+            "addresses": [addr["local"] for addr in nic["addr_info"]],
+        }
+        for nic in j
+    ]
+    return {"ips": ips}
 
 
 def _get_ip_info(obj="addr", flags=("-j",)):
