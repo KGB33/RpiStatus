@@ -1,5 +1,4 @@
 import socket
-import json
 
 
 def test_network(test_client):
