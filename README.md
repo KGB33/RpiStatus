@@ -9,9 +9,9 @@
   - [ ] CPU Utization                    (`/hardware/cores`)
   - [ ] Disk Free                        (`/hardware/df`)
 
-- [ ] Network info                       (`/network`)
+- [x] Network info                       (`/network`)
   - [x] Hostname                         (`/network/hostname`)
-  - [ ] Internal Ip addr                 (`/network/ip`)
+  - [x] Internal Ip addr                 (`/network/ip`)
 
 
 
