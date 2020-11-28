@@ -7,6 +7,7 @@ authors = ["KGB33 <github@bassingthwaite.org>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Flask = "^1.1.2"
+psutil = "^5.7.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

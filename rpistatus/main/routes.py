@@ -1,3 +1,5 @@
+import psutil
+
 from rpistatus.main import bp
 
 
@@ -12,3 +14,9 @@ def ps():
     """
     Returns currently running processes
     """
+    return {
+        p.pid: p.info
+        for p in psutil.process_iter(
+            ["name", "status", "username", "memory_percent", "cpu_percent"]
+        )
+    }
