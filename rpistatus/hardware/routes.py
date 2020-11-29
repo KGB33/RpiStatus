@@ -1,3 +1,5 @@
+import psutil
+
 from rpistatus.hardware import bp
 
 
@@ -6,34 +8,72 @@ def hardware():
     """
     Returns conglomerated hardware stats
     """
+    return temps() | cores() | diskfree()
 
 
 @bp.route("/temps")
 def temps():
     """
-    Returns core temps
+    Returns temps
     """
+    return {
+        "temps": {
+            key: [item._asdict() for item in val]
+            for key, val in psutil.sensors_temperatures().items()
+        }
+    }
 
 
 @bp.route("/cores")
 def cores():
     """
-    Returns Core utilization
+    Returns Core utilization,
+    blocks for 1 second
+
+    Format:
+        { "cores": [{
+            "guest":      int,
+            "guest_nice": int,
+            "idle":       int,
+            "iowait":     int,
+            "irq":        int,
+            "nice":       int,
+            "softirq":    int,
+            "steal":      int,
+            "system":     int,
+            "user":       int
+            },
+            ...
+            ]}
     """
+    return {
+        "cores": [
+            core._asdict() for core in psutil.cpu_times_percent(interval=1, percpu=True)
+        ]
+    }
 
 
 @bp.route("/df")
-def diskfree():
+def diskfree(_all=False):
     """
-    Note: Use `df -B1` to get bytes.
+    Returns disk useage info for each partition.
 
-    Returns a Json list of `disk` objects, each disk object has
-        Filesystem:   string
-        Size:         int (bytes)
-        Used:         int (bytes)
-        Avalable:     int (bytes)
-        Capacity:     int (0 - 100)
-        MountedOn:    string
+    If all is False, it returns info for physical partions only
 
-    Each response will have at least one disk object
+    TODO: set _all to be a queriy paramater
     """
+    result = []
+    for part in psutil.disk_partitions(all=_all):
+        usage = psutil.disk_usage(part.mountpoint)
+        result.append(
+            {
+                "device": part.device,
+                "total": usage.total,
+                "used": usage.used,
+                "free": usage.free,
+                "percent": int(usage.percent),
+                "type": part.fstype,
+                "mountpoint": part.mountpoint,
+            }
+        )
+    return {"devices": result}
