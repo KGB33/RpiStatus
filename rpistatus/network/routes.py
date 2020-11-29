@@ -15,6 +15,7 @@ def network():
     """
     return ip() | {"hostname": hostname()}
 
+
 @bp.route("/hostname")
 def hostname():
     return socket.gethostname()
