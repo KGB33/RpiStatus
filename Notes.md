@@ -12,3 +12,7 @@ gives the ip addr of every NIC, not just the ip thats defined in `/etc/hosts`
 # psutil
 
 Its magic. But really, it replaces all the `subprocess.run()` commands I was planning on using.
+
+# FastAPI
+
+Launch w/ uvicorn. use `uvicorn rpistatus:app --reload` for devlopemtn
