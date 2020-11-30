@@ -9,7 +9,7 @@ def test_network(test_client):
     response = test_client.get("/network/")
     assert response.status_code == 200
 
-    assert set(response.json.keys()) == {"ips", "hostname"}
+    assert set(response.json().keys()) == {"ips", "hostname"}
 
 
 def test_hostname(test_client):
@@ -19,8 +19,7 @@ def test_hostname(test_client):
     """
     response = test_client.get("/network/hostname")
     assert response.status_code == 200
-
-    assert response.data.decode() == socket.gethostname()
+    assert response.json() == {"hostname": socket.gethostname()}
 
 
 def test_ip(test_client):
@@ -31,5 +30,5 @@ def test_ip(test_client):
     response = test_client.get("/network/ip")
     assert response.status_code == 200
 
-    assert type(response.json["ips"]) == list
-    assert set(response.json["ips"][0].keys()) == {"name", "type", "addresses"}
+    assert type(response.json()["ips"]) == list
+    assert set(response.json()["ips"][0].keys()) == {"name", "type", "addresses"}

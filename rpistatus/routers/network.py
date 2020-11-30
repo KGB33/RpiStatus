@@ -15,12 +15,12 @@ def network():
       - hostname
       - ip
     """
-    return ip() | {"hostname": hostname()}
+    return ip() | hostname()
 
 
 @router.get("/hostname")
 def hostname():
-    return socket.gethostname()
+    return {"hostname": socket.gethostname()}
 
 
 @router.get("/ip")

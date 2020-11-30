@@ -11,7 +11,15 @@ def test_temps(test_client):
     When the `/temps` endpoint is called,
     Assert that it returns a Json object with the expected headers.
     """
-    assert False
+    expected = {"critical", "high", "current", "label"}
+
+    result = test_client.get("/hardware/temps")
+    assert result.status_code == 200
+
+    sensor = result.json()["temps"][list(result.json()["temps"].keys())[0]][0]
+    print(sensor)
+
+    assert set(sensor.keys()) == expected
 
 
 def test_cores(test_client):
@@ -19,7 +27,25 @@ def test_cores(test_client):
     When the `/cores` endpoint is called,
     Assert that it returns a Json object with the expected headers.
     """
-    assert False
+    expected = {
+        "guest",
+        "guest_nice",
+        "idle",
+        "iowait",
+        "irq",
+        "nice",
+        "softirq",
+        "steal",
+        "system",
+        "user",
+    }
+
+    result = test_client.get("/hardware/cores")
+    assert result.status_code == 200
+
+    core = result.json()["cores"][0]
+
+    assert set(core.keys()) == expected
 
 
 def test_diskfree(test_client):
@@ -28,20 +54,11 @@ def test_diskfree(test_client):
     Assert that it returns a Json object with the expected headers.
 
     """
-    expected = {"Filesystem", "Size", "Used", "Avalable", "Capacity", "MountedOn"}
+    expected = {"device", "total", "used", "free", "percent", "type", "mountpoint"}
 
     result = test_client.get("/hardware/df")
     assert result.status_code == 200
 
-    disk = result.json()[0]
+    disk = result.json()["devices"][0]
 
     assert set(disk.keys()) == expected
-
-    assert type(disk["Filesystem"]) == str
-    assert type(disk["Size"]) == int
-    assert type(disk["Used"]) == int
-    assert type(disk["Avalable"]) == int
-    assert type(disk["Capacity"]) == int
-    assert type(disk["MountedOn"]) == str
-
-    assert 0 <= disk["Capacity"] <= 100
