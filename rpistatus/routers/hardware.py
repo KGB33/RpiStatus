@@ -1,9 +1,11 @@
 import psutil
 
-from rpistatus.hardware import bp
+from fastapi import APIRouter
+
+router = APIRouter(prefix="/hardware")
 
 
-@bp.route("/")
+@router.get("/")
 def hardware():
     """
     Returns conglomerated hardware stats
@@ -11,7 +13,7 @@ def hardware():
     return temps() | cores() | diskfree()
 
 
-@bp.route("/temps")
+@router.get("/temps")
 def temps():
     """
     Returns temps
@@ -24,7 +26,7 @@ def temps():
     }
 
 
-@bp.route("/cores")
+@router.get("/cores")
 def cores():
     """
     Returns Core utilization,
@@ -53,7 +55,7 @@ def cores():
     }
 
 
-@bp.route("/df")
+@router.get("/df")
 def diskfree(_all=False):
     """
     Returns disk useage info for each partition.

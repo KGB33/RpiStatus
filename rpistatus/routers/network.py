@@ -3,10 +3,12 @@ import subprocess
 import json
 
 
-from rpistatus.network import bp
+from fastapi import APIRouter
+
+router = APIRouter(prefix="/network")
 
 
-@bp.route("/")
+@router.get("/")
 def network():
     """
     Returns general conglomerated network info.
@@ -16,12 +18,12 @@ def network():
     return ip() | {"hostname": hostname()}
 
 
-@bp.route("/hostname")
+@router.get("/hostname")
 def hostname():
     return socket.gethostname()
 
 
-@bp.route("/ip")
+@router.get("/ip")
 def ip():
     """
     Returns the ip addresses of the device.

@@ -1,15 +1,17 @@
 import psutil
 
-from rpistatus.main import bp
+from fastapi import APIRouter
+
+router = APIRouter()
 
 
-@bp.route("/")
-@bp.route("/index")
+@router.get("/")
+@router.get("/index")
 def index():
     return "RaspberryPi is Connected and Running.", 200
 
 
-@bp.route("/ps")
+@router.get("/ps")
 def ps():
     """
     Returns currently running processes

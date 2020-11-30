@@ -6,8 +6,9 @@ authors = ["KGB33 <github@bassingthwaite.org>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Flask = "^1.1.2"
 psutil = "^5.7.3"
+fastapi = "^0.62.0"
+uvicorn = "^0.12.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

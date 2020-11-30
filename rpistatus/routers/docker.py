@@ -1,21 +1,23 @@
-from rpistatus.docker import bp
+from fastapi import APIRouter
+
+router = APIRouter(prefix="/docker")
 
 
-@bp.route("/")
+@router.get("/")
 def docker():
     """
     "general docker info", whatever that means.
     """
 
 
-@bp.route("/ps")
+@router.get("/ps")
 def ps():
     """
     Returns running docker containers
     """
 
 
-@bp.route("/logs/<container_name>")
+@router.get("/logs/<container_name>")
 def logs(container_name):
     """
     Returns the logs for the provided container.
