@@ -15,8 +15,8 @@ def test_ps(test_client):
     response = test_client.get("/ps")
     assert response.status_code == 200
 
-    assert list(response.json.keys())[0].isdigit()
-    assert set(list(response.json.values())[0].keys()) == {
+    assert list(response.json().keys())[0].isdigit()
+    assert set(list(response.json().values())[0].keys()) == {
         "cpu_percent",
         "memory_percent",
         "name",
