@@ -2,17 +2,16 @@
 # Goals
 
 - [x] General OK endpoint                (`/`)
-  - [ ] Currently Running Processes      (`/ps`)
+  - [x] Currently Running Processes      (`/ps`)
 
-- [ ] Access general hardware info       (`/hardware`)
-  - [ ] CPU Temps                        (`/hardware/temps`)
-  - [ ] CPU Utilization                  (`/hardware/cores`)
-  - [ ] Disk Free                        (`/hardware/df`)
+- [x] Access general hardware info       (`/hardware`)
+  - [x] CPU Temps                        (`/hardware/temps`)
+  - [x] CPU Utilization                  (`/hardware/cores`)
+  - [x] Disk Free                        (`/hardware/df`)
 
 - [x] Network info                       (`/network`)
   - [x] Hostname                         (`/network/hostname`)
   - [x] Internal Ip addr                 (`/network/ip`)
-
 
 
 - [ ] General Docker Info                (`/docker`)
