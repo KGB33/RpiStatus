@@ -7,7 +7,8 @@ router = APIRouter()
 
 @router.get("/")
 @router.get("/index")
-def index():
+async def index():
+    # TODO: Change RaspberryPi to hostname
     return "RaspberryPi is Connected and Running.", 200
 
 
