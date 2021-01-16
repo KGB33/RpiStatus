@@ -5,7 +5,7 @@ class Base:
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
+    SECRET_KEY = os.environ["SECRET_KEY"]
 
 
 class Testing(Base):
