@@ -6,7 +6,7 @@
 
 - [ ] Access general hardware info       (`/hardware`)
   - [ ] CPU Temps                        (`/hardware/temps`)
-  - [ ] CPU Utization                    (`/hardware/cores`)
+  - [ ] CPU Utilization                  (`/hardware/cores`)
   - [ ] Disk Free                        (`/hardware/df`)
 
 - [x] Network info                       (`/network`)
