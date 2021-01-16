@@ -3,7 +3,12 @@ def test_hardware(test_client):
     When the `/hardware` end point is called,
     Assert that it returns a Json object with the expected headers.
     """
-    assert False
+    expected = {"temps", "cores", "devices"}
+
+    result = test_client.get("/hardware")
+    assert result.status_code == 200
+
+    assert set(result.json().keys()) == expected
 
 
 def test_temps(test_client):
@@ -17,7 +22,6 @@ def test_temps(test_client):
     assert result.status_code == 200
 
     sensor = result.json()["temps"][list(result.json()["temps"].keys())[0]][0]
-    print(sensor)
 
     assert set(sensor.keys()) == expected
 
